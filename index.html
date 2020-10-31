@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <title>moyenne</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="container-fluid">
+  <div class="container-sm" id="app">
+    <header class="text-center">
+      <h1>Calcul de moyenne</h1>
+      <div class="row d-flex justify-content-center stx-res">
+        <div class="col-3">
+          <label for="inputmatiere">matière </label>
+          <input id="matiere" v-model="currentMatiere">
+        </div>
+        <div class="col-3">
+          <label for="inputnote">note </label>
+          <input id="note" v-model="currentNote">
+        </div>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <button id="valid" v-on:click="addNote">ajouter</button>
+      </div>
+    </header>
+    <div class="row d-flex justify-content-center">
+      <div class=col-4>
+        <table class="table table-bordered" id=" tabNotes">
+          <tbody>
+            <tr v-for="(matiere,index) in tabNotes">
+              <th scope="row">{{index}}</th>
+              <td>{{matiere.matiere}}</td>
+              <td>{{matiere.vnote}}</td>
+              <td class="stx"><img src=modif.png v-if="index>0" v-on:click="modif(index)" width="25px"></td>
+              <td class="stx"><img src=supp.png v-if="index>0" v-on:click="del(index)" width="25px"> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-4 text-center">
+        <button id="moyenne" v-on:click="CalculM()">calculer la moyenne</button>
+        <p v-if="moyenne>0">votre moyenne est de: {{moyenne}}</p>
+      </div>
+    </div>
+
+  </div>
+  <style>
+    header {
+      background-color: rgb(181, 181, 211);
+    }
+
+    button {
+      margin-bottom: 10px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
